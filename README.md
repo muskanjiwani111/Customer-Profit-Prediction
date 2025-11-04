@@ -94,7 +94,7 @@ If the dataset cannot be shared publicly, a sample or synthetic dataset may be u
 ---
 
 ## Repository
-GitHub Repository: [Customer-Profit-Prediction](https://github.com/muskanjiwani111/Customer-Profit-Prediction)
+[Customer Profit Prediction Repository](https://github.com/muskanjiwani111/Customer-Profit-Prediction)
 
 ---
 
