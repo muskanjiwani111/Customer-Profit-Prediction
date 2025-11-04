@@ -1,9 +1,7 @@
 # Customer Profit Prediction using Multiple Linear Regression and PCA
 
 **Author:** Muskan Jiwani   
-**Tools & Technologies:** R, ggplot2, caTools, MASS, leaps  
-**Project Type:** Personal Data Analytics Project  
-
+**Tools & Technologies:** R, ggplot2, caTools, MASS, leaps   
 ---
 
 ## Project Overview
