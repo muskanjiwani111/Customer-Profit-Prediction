@@ -37,8 +37,6 @@ If the dataset cannot be shared publicly, a sample or synthetic dataset may be u
 ---
 
 
----
-
 ## Methodology
 
 ### 1. Data Exploration and Visualization
@@ -103,7 +101,7 @@ GitHub Repository: [Customer-Profit-Prediction](https://github.com/muskanjiwani1
 ## Contact
 **Muskan Jiwani**   
 **Email:** muskanjiwani111@gmail.com  
-**LinkedIn:** [linkedin.com/in/muskanjiwani](https://www.linkedin.com/in/muskanjiwani)  
+**LinkedIn:** http://www.linkedin.com/in/muskan-jiwani
 **GitHub:** [github.com/muskanjiwani111](https://github.com/muskanjiwani111)
 
 
