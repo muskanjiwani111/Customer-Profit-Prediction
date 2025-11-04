@@ -91,10 +91,6 @@ If the dataset cannot be shared publicly, a sample or synthetic dataset may be u
 
 ---
 
-## Full Report
-
-For detailed analysis, charts, and model selection process, see the [PDF report](Customer Profit Prediction.pdf).
-
 ## Repository
 [Customer Profit Prediction Repository](https://github.com/muskanjiwani111/Customer-Profit-Prediction)
 
