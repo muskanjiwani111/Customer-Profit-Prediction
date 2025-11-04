@@ -1,0 +1,135 @@
+#Name: Muskan Jiwani
+
+library(readr)
+data <- read_csv("C:/Users/muska/Downloads/SME_Profit.csv")
+View(data)
+
+
+library(ggplot2) 
+library(caTools)  # For splitting the dataset 
+library(leaps)   # For exhaustive search 
+library (MASS)     # For stepwise regression 
+
+head(data) 
+colnames(data)
+
+# Scatter plots for numerical predictors 
+plot(data$`R&D Spend`, data$Profit,
+     main = "R&D Spend vs Profit",
+     xlab = "R&D Spend",
+     ylab = "Profit")
+
+
+
+
+plot(data$Administration, data$Profit, main="Administration vs Profit", xlab="Administration", 
+     ylab="Profit")
+
+plot(data$`Marketing Spend`, data$Profit,
+     main = "Marketing Spend vs Profit",
+     xlab = "Marketing Spend",
+     ylab = "Profit")
+
+ggplot(data, aes(x = State, y = Profit, color = State)) + geom_point() + ggtitle("State vs Profit")
+
+
+
+install.packages("caTools")  # only run once
+library(caTools)
+
+set.seed(123)
+
+# Split the dataset into 70% training and 30% testing
+split <- sample.split(data$Profit, SplitRatio = 0.7)
+train_data <- subset(data, split == TRUE)
+test_data <- subset(data, split == FALSE)
+
+mlr_model <- lm(Profit ~ `R&D Spend` + Administration + `Marketing Spend` + State,
+                data = train_data)
+
+summary(mlr_model)
+
+# Residual plot
+plot(mlr_model$fitted.values, mlr_model$residuals, 
+     main="Residuals vs Fitted", xlab="Fitted values", ylab="Residuals")
+abline(h=0, col="red")
+
+
+
+# Use regsubsets for exhaustive search
+exhaustive_model <- regsubsets(Profit ~ `R&D Spend` + Administration + `Marketing Spend` + State, 
+                               data = train_data, nvmax = 4)  # nvmax = maximum number of predictors
+
+
+
+# Get the summary of the model
+exhaustive_summary <- summary(exhaustive_model)
+
+# Display the Cp values, adjusted R-squared, and BIC for each subset of predictors
+exhaustive_summary$cp  # Cp values
+exhaustive_summary$adjr2  # Adjusted R²
+exhaustive_summary$bic  # BIC
+
+
+library(MASS)
+forward_model <- stepAIC(lm(Profit ~ 1, data = train_data), scope = list(upper = mlr_model), direction = "forward")
+summary(forward_model)
+
+backward_model <- stepAIC(mlr_model, direction = "backward")
+summary(backward_model)
+
+stepwise_model <- stepAIC(mlr_model, direction = "both")
+summary(stepwise_model)
+
+
+# AIC and BIC
+AIC(forward_model)
+BIC(forward_model)
+
+AIC(backward_model)
+BIC(backward_model)
+
+AIC(stepwise_model)
+BIC(stepwise_model)
+
+
+# Make sure you have regsubsets summary
+exhaustive_summary <- summary(exhaustive_model)
+
+comparison_table <- data.frame(
+  Model = c("Exhaustive Search", "Forward Selection", "Backward Elimination", "Stepwise Regression"),
+  Predictors = c("R&D Spend, Marketing Spend",  # adjust based on your summary results
+                 "R&D Spend, Marketing Spend", 
+                 "R&D Spend, Administration, Marketing Spend", 
+                 "R&D Spend, Marketing Spend"),
+  Cp = c(exhaustive_summary$cp[which.min(exhaustive_summary$cp)],  # Minimum Cp value
+         AIC(forward_model),
+         AIC(backward_model),
+         AIC(stepwise_model)),
+  Adjusted_R2 = c(exhaustive_summary$adjr2[which.max(exhaustive_summary$adjr2)],  # Maximum Adjusted R²
+                  summary(forward_model)$adj.r.squared,
+                  summary(backward_model)$adj.r.squared,
+                  summary(stepwise_model)$adj.r.squared),
+  AIC = c(NA,  # AIC not available for exhaustive search
+          AIC(forward_model),
+          AIC(backward_model),
+          AIC(stepwise_model)),
+  BIC = c(NA,  # BIC not available for exhaustive search
+          BIC(forward_model),
+          BIC(backward_model),
+          BIC(stepwise_model))
+)
+
+# View the comparison table
+print(comparison_table)
+
+
+pca_data <- data[, c("R&D Spend", "Administration", "Marketing Spend"), drop = FALSE]
+
+
+pca_data <- data %>% 
+  select(`R&D Spend`, Administration, `Marketing Spend`)
+
+
+pca_result <- prcomp(pca_data, scale. = TRUE)
+summary(pca_result)
