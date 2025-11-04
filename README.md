@@ -95,8 +95,10 @@ If the dataset cannot be shared publicly, a sample or synthetic dataset may be u
 
 ---
 
-## Full Project Report
-[Download or View the Report (PDF)](Customer Profit Prediction.PDF)
+## Repository
+GitHub Repository: [Customer-Profit-Prediction](https://github.com/muskanjiwani111/Customer-Profit-Prediction)
+
+---
 
 ## Contact
 **Muskan Jiwani**   
