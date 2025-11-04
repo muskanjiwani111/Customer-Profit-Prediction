@@ -101,7 +101,7 @@ If the dataset cannot be shared publicly, a sample or synthetic dataset may be u
 ## Contact
 **Muskan Jiwani**   
 **Email:** muskanjiwani111@gmail.com  
-**LinkedIn:** http://www.linkedin.com/in/muskan-jiwani
-**GitHub:** [github.com/muskanjiwani111](https://github.com/muskanjiwani111)
+[LinkedIn](https://www.linkedin.com/in/muskan-jiwani) | [GitHub](https://github.com/muskanjiwani111)
+
 
 
