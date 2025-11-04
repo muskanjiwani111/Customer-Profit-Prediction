@@ -90,5 +90,3 @@ pca_result <- prcomp(pca_data, scale.=TRUE)
 summary(pca_result)
 
 
-# RStudio Connect folder
-rsconnect/
